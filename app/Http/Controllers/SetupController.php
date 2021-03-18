@@ -18,7 +18,7 @@ class SetupController extends Controller
     {
         try {
             if (User::exists()) {
-                return redirect()->route('saml2_login','local');
+                return redirect()->route('saml2_login', env('IDP_ENV_ID', 'local'));
             }
         } catch (Exception $e) {
             //

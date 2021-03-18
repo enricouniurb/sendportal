@@ -51,6 +51,6 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect(route('saml2_logout','local'));
+            : redirect(route('saml2_logout',env('IDP_ENV_ID', 'local')));
     }
 }

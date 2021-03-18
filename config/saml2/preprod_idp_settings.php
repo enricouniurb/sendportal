@@ -169,7 +169,7 @@ return $settings = array(
         // this SP to be encrypted.
         'wantNameIdEncrypted' => false,
 
-        'wantAssertionsEncrypted' => false,
+        'wantAssertionsEncrypted' => true,
         // Authentication context.
         // Set to false and no AuthContext will be sent in the AuthNRequest,
         // Set true or don't present thi parameter and you will get an AuthContext 'exact' 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport'

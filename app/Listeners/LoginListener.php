@@ -80,7 +80,7 @@ class LoginListener
         $laravelUser = User::where('email', $userData['email'])->first();
         Log::info('laravel user [' . $laravelUser . ']');                     
         //ulteriore verifica attraverso il codice fiscale 
-        if ($laravelUser===null){
+        if ($laravelUser==null){
             Log::info('Errore nuovo utente non trovato');                            
             $handler = new Handler(Container::getInstance());
             $handler->report($e);

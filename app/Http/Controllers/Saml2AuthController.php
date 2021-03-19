@@ -16,16 +16,6 @@ use Aacotroneo\Saml2\Http\Controllers\Saml2Controller;
 class Saml2AuthController extends Saml2Controller
 {
 
-    protected $saml2Auth;
-
-    /**
-     * @param Saml2Auth $saml2Auth injected.
-     */
-    function __construct(Saml2Auth $saml2Auth)
-    {
-        $this->saml2Auth = $saml2Auth;
-    }
-
 
    
     /**

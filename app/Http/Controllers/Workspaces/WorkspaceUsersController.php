@@ -10,15 +10,22 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\Workspaces\RemoveUserFromWorkspace;
+use App\Services\Workspaces\AddUserToWorkspace;
+use App\Http\Requests\Workspaces\WorkspaceAddUserRequest;
+use Sendportal\Base\Facades\Sendportal;
 
 class WorkspaceUsersController extends Controller
 {
     /** @var RemoveUserFromWorkspace */
     private $removeUserFromWorkspace;
+    
+    /** @var AddUserToWorkspace */
+    private $addUserToWorkspace;
 
-    public function __construct(RemoveUserFromWorkspace $removeUserFromWorkspace)
+    public function __construct(RemoveUserFromWorkspace $removeUserFromWorkspace, AddUserToWorkspace $addUserToWorkspace)
     {
         $this->removeUserFromWorkspace = $removeUserFromWorkspace;
+        $this->addUserToWorkspace = $addUserToWorkspace;
     }
 
     public function index(Request $request): ViewContract
@@ -60,4 +67,19 @@ class WorkspaceUsersController extends Controller
                 __(':user was removed from :workspace.', ['user' => $user->name, 'workspace' => $workspace->name])
             );
     }
+
+
+    /**
+     * @throws Exception
+     */
+    public function store(WorkspaceAddUserRequest $request): RedirectResponse
+    {
+        $workspace = $request->user()->currentWorkspace();
+
+        $this->addUserToWorkspace->handle($workspace, $request->email, $request->role);
+
+        return redirect()->route('users.index');
+    }
+
+
 }

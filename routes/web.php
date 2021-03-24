@@ -10,8 +10,8 @@ use App\Http\Middleware\RequireWorkspace;
 
 Auth::routes(
     [
-        'verify' => config('sendportal-host.auth.register', false),
-        'register' => config('sendportal-host.auth.register', false),
+        'verify' => false, //config('sendportal-host.auth.register', false),
+        'register' => false, //config('sendportal-host.auth.register', false),
         'reset' => config('sendportal-host.auth.password_reset'),
     ]
 );
@@ -65,6 +65,7 @@ Route::namespace('Workspaces')
         {
             $workspacesRouter->get('/', 'WorkspaceUsersController@index')->name('index');
             $workspacesRouter->delete('{userId}', 'WorkspaceUsersController@destroy')->name('destroy');
+            $workspacesRouter->post('/', 'WorkspaceUsersController@store')->name('store');
 
             // Invitations.
             $workspacesRouter->name('invitations.')->prefix('invitations')

@@ -98,13 +98,13 @@
             @if ( auth()->user()->ownsCurrentWorkspace())
                 <div class="card mt-3">
                     <div class="card-header">
-                        {{ __('Invite User') }}
+                        {{ __('Add User') }}
                     </div>
                     <div class="card-body">
 
                         @if(config('sendportal-host.auth.register'))
 
-                            <form action="{{ route('users.invitations.store') }}" method="post">
+                            <form action="{{ route('users.store') }}" method="post">
 
                                 @csrf
                                 <div class="form-group row">
@@ -115,8 +115,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                   <label for="create-invitation-role" class="col-sm-2">{{ __('Role') }}</label>
+                                   <div class="col-sm-6">
+                                        <select name="role" id="create-invitation-role"  class="form-control">
+                                            <option value="member">{{ __('Member') }}</option>
+                                            <option value="owner">{{ __('Owner') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="offset-sm-2 col-sm-10">
-                                        <input type="submit" class="btn btn-md btn-primary" value="{{ __('Send Invite') }}">
+                                        <input type="submit" class="btn btn-md btn-primary" value="{{ __('Add User') }}">
                                     </div>
                                 </div>
                             </form>

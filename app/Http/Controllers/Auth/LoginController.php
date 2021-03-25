@@ -21,9 +21,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm(): View
+    public function showLoginForm()
     {
-        return view('auth.login');
+        return redirect()->route('saml2_login', env('IDP_ENV_ID', 'local'));
     }
 
     protected function redirectTo(): string

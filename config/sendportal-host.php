@@ -12,7 +12,8 @@ return [
     */
     'locale' => [
         'supported' => [
-            'en' => ['name' => 'English', 'native' => 'English']
+            'en' => ['name' => 'English', 'native' => 'English'],
+            'it' => ['name' => 'Italian', 'native' => 'Italiano']
         ]
     ],
 

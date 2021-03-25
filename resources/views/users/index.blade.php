@@ -37,7 +37,7 @@
                                             disabled
                                             title="{{ __('You cannot remove yourself from the workspace.') }}"
                                         >
-                                            Remove
+                                            {{__('Remove') }}
                                         </button>
                                     @else
                                         <form action="{{ route('users.destroy', $user->id) }}"

@@ -40,7 +40,9 @@ trait HasWorkspaces
 
     public function ownsWorkspace(Workspace $workspace): bool
     {
-        return $this->id && $workspace->owner_id && (int)$this->id === (int)$workspace->owner_id;
+        return $this->id 
+         && ($workspace->owner_id && (int)$this->id === (int)$workspace->owner_id
+         || $this->currentWorkspace()->users()->where('user_id',(int)$this->id)->first()->pivot->role == 'owner');
     }
 
     public function currentWorkspaceId(): ?int
@@ -67,9 +69,18 @@ trait HasWorkspaces
         return $this->currentWorkspace();
     }
 
+
     public function ownsCurrentWorkspace(): bool
     {
-        return $this->currentWorkspace() && (int)$this->currentWorkspace()->owner_id === (int)$this->id;
+
+        // $result = $this->currentWorkspace()
+        //     ->leftJoin('workspace_users', 'workspace_users.workspace_id', '=', 'workspaces.id')
+        //     ->where('workspace_users.user_id', $this->id)
+        //     ->first();
+
+        return $this->currentWorkspace() 
+            && ((int)$this->currentWorkspace()->owner_id === (int)$this->id 
+            || $this->currentWorkspace()->users()->where('user_id',(int)$this->id)->first()->pivot->role == 'owner');
     }
 
     public function switchToWorkspace(Workspace $workspace): void

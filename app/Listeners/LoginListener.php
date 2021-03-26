@@ -82,9 +82,6 @@ class LoginListener
         //ulteriore verifica attraverso il codice fiscale 
         if ($laravelUser==null){
             Log::info('Errore nuovo utente non trovato');                            
-            $handler = new Handler(Container::getInstance());
-            $handler->report($e);
-
             Log::info('Utente non autorizzato: '.$userData->email);
             abort(401,  trans('global.utente_non_autorizzato'));
         }

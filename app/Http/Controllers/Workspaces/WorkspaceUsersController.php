@@ -56,9 +56,19 @@ class WorkspaceUsersController extends Controller
 
         $workspace = $requestUser->currentWorkspace();
 
+        if ($workspace->owner_id === $userId) {
+            return redirect()
+                ->back()
+                ->with('error', __('You cannot remove principal owner from workspace.'));
+        }
+
         $user = User::find($userId);
 
         $this->removeUserFromWorkspace->handle($user, $workspace);
+
+        if ($user->workspaces()->count()==0){
+            $user->delete();
+        }
 
         return redirect()
             ->route('users.index')

@@ -34,7 +34,8 @@ class AddUserToWorkspace
                     'password' => Hash::make(Str::random(8)),
                 ]);
             }
-    
+
+            $user->markEmailAsVerified();
             $this->addWorkspaceMember->handle($workspace, $user, $role);
 
         });

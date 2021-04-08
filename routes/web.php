@@ -13,6 +13,7 @@ Auth::routes(
         'verify' => false, //config('sendportal-host.auth.register', false),
         'register' => false, //config('sendportal-host.auth.register', false),
         'reset' => config('sendportal-host.auth.password_reset'),
+        'login' => false
     ]
 );
 
@@ -22,6 +23,7 @@ Route::get('setup', 'SetupController@index')->name('setup');
 Route::middleware('auth')->namespace('Auth')->group(
     static function (Router $authRouter)
     {
+
         // Logout.
         $authRouter->get('logout', 'LoginController@logout')->name('logout');
 

@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('Sendportal\Base\Http\Controllers\EmailServices\EmailServicesController', 'App\Http\Controllers\EmailServices\EmailServicesController');
     }
 
     public function boot(): void

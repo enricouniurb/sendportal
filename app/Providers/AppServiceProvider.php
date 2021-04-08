@@ -21,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind('Sendportal\Base\Http\Controllers\EmailServices\EmailServicesController', 'App\Http\Controllers\EmailServices\EmailServicesController');
+        $this->app->bind('Sendportal\Base\Http\Controllers\Subscribers\SubscribersController', 'App\Http\Controllers\Subscribers\SubscribersController');
+        $this->app->bind('Sendportal\Base\Http\Controllers\Subscribers\SubscribersImportController', 'App\Http\Controllers\Subscribers\SubscribersImportController');
+        $this->app->bind('Sendportal\Base\Http\Controllers\Tags\TagsController', 'App\Http\Controllers\Tags\TagsController');
     }
 
     public function boot(): void

@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Sendportal\Base\Facades\Sendportal;
+use App\Http\Middleware\OwnsCurrentWorkspace;
 
 class ApiTokenController extends Controller
 {
@@ -21,6 +22,11 @@ class ApiTokenController extends Controller
     public function __construct(ApiTokenRepository $apiTokensRepo)
     {
         $this->apiTokensRepo = $apiTokensRepo;
+
+        $this->middleware(OwnsCurrentWorkspace::class)->only([            
+            'store',
+            'destroy',                      
+        ]);
     }
 
     /**

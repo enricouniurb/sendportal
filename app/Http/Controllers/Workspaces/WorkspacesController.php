@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Middleware\OwnsRequestedWorkspace;
+use App\Http\Middleware\OwnsCurrentWorkspace;
 use App\Http\Requests\Workspaces\WorkspaceStoreRequest;
 use App\Http\Requests\Workspaces\WorkspaceUpdateRequest;
 use App\Models\Workspace;
@@ -32,6 +33,10 @@ class WorkspacesController extends Controller
         $this->middleware(OwnsRequestedWorkspace::class)->only([
             'edit',
             'update'
+        ]);
+
+        $this->middleware(OwnsCurrentWorkspace::class)->only([
+            'store'
         ]);
     }
 

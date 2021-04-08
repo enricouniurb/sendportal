@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Workspace;
 use Tests\TestCase;
 
-class NewUserInvitationTest extends TestCase
+class NewUserInvitationTest 
 {
     use RefreshDatabase,
         WithFaker;

@@ -113,7 +113,7 @@
                     </div>
                 </div>
             @endif
-
+            @if (auth()->user()->ownsCurrentWorkspace())
             <div class="card mt-3">
                 <div class="card-header">
                     <div class="card-header-inner">
@@ -141,7 +141,7 @@
                     </form>
                 </div>
             </div>
-
+            @endif
         </div>
     </div>
 

@@ -16,7 +16,7 @@ class OwnsCurrentWorkspace
     public function handle($request, Closure $next)
     {
         if (! $request->user()->ownsCurrentWorkspace()) {
-            abort(404);
+            abort(401);
         }
 
         return $next($request);

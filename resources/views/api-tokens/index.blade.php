@@ -52,7 +52,7 @@
                 @endif
 
             </div>
-
+            @if (auth()->user()->ownsCurrentWorkspace())
             <div class="card mt-3">
                 <div class="card-header">
                     {{ __('Add New Token') }}
@@ -78,6 +78,7 @@
 
                 </div>
             </div>
+            @endif
         </div>
     </div>
 

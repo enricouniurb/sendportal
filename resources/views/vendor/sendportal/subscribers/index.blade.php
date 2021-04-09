@@ -113,10 +113,14 @@
                             <form action="{{ route('sendportal.subscribers.destroy', $subscriber->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
+                                @if (auth()->user()->ownsCurrentWorkspace())
                                 <a href="{{ route('sendportal.subscribers.edit', $subscriber->id) }}"
-                                   class="btn btn-xs btn-light" >{{ __('Edit') }}</a>
+                                   class="btn btn-xs btn-light" >{{ __('Edit') }}</a>   
+                                @endif                                
                                 <button type="submit"
-                                        class="btn btn-xs btn-light delete-subscriber">{{ __('Delete') }}</button>
+                                        class="btn btn-xs btn-light delete-subscriber"
+                                        @if (!auth()->user()->ownsCurrentWorkspace()) disabled @endif>{{ __('Delete') }}
+                                </button>                               
                             </form>
                         </td>
 

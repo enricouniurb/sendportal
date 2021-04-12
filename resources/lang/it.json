@@ -296,5 +296,11 @@
     "Warning!": "Attenzione!",
     "YOU HAVE NOT CONFIGURED ANY EMAIL SERVICE.": "NON HAI CONFIGURATO ALCUN SERVIZIO EMAIL.",
     "YOU HAVE NOT COMPLETED ANY CAMPAIGNS.": "NON HAI COMPLETATO ALCUNA CAMPAGNA.",
-    "No recent subscribers.": "Nessuna iscrizione recente."
+    "No recent subscribers.": "Nessuna iscrizione recente.",
+
+    "Manage From Emails": "Gestione Mittenti",
+    "From Emails": "Mittenti",
+    "New From Email": "Nuovo Mittente",
+    "Add From Email": "Aggiungi Mittente",
+    "Create From Email": "Crea Mittente"
 }

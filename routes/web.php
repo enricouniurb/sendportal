@@ -109,8 +109,19 @@ Route::namespace('Workspaces')->middleware(
             ->name('workspaces.invitations.accept');
         $workspaceRouter->post('workspaces/invitations/{invitation}/reject', 'PendingInvitationController@reject')
             ->name('workspaces.invitations.reject');
+
+        //From Emails
+        $workspaceRouter->name('from-emails.')->prefix('from-emails')->group(static function (Router $fromEmailsRouter) {
+            $fromEmailsRouter->get('/', 'FromEmailsController@index')->name('index');
+            $fromEmailsRouter->get('create', 'FromEmailsController@create')->name('create');
+            $fromEmailsRouter->post('/', 'FromEmailsController@store')->name('store');
+            $fromEmailsRouter->get('{id}/edit', 'FromEmailsController@edit')->name('edit');
+            $fromEmailsRouter->put('{id}', 'FromEmailsController@update')->name('update');
+            $fromEmailsRouter->delete('{id}', 'FromEmailsController@destroy')->name('destroy');
+        });
     }
 );
+
 
 Route::middleware(['auth', 'verified', RequireWorkspace::class])->group(
     static function ()

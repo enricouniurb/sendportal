@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('Sendportal\Base\Http\Controllers\Subscribers\SubscribersController', 'App\Http\Controllers\Subscribers\SubscribersController');
         $this->app->bind('Sendportal\Base\Http\Controllers\Subscribers\SubscribersImportController', 'App\Http\Controllers\Subscribers\SubscribersImportController');
         $this->app->bind('Sendportal\Base\Http\Controllers\Tags\TagsController', 'App\Http\Controllers\Tags\TagsController');
+        $this->app->bind('Sendportal\Base\Http\Controllers\Campaigns\CampaignsController', 'App\Http\Controllers\Campaigns\CampaignsController');
     }
 
     public function boot(): void

@@ -8,4 +8,10 @@ Modern open-source self-hosted email marketing.
 
 
 
-Forked version with support to SSO.
+Forked version 
+- 🔥 authentication by SSO (Shibboleth)
+- 🔥 add a user with email and role 
+- 🔥 add multi owners for workspace
+- 🔥 limit member operations
+- 🔥 add from emails list for workspace
+

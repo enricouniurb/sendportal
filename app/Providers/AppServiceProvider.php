@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('Sendportal\Base\Http\Controllers\Subscribers\SubscribersImportController', 'App\Http\Controllers\Subscribers\SubscribersImportController');
         $this->app->bind('Sendportal\Base\Http\Controllers\Tags\TagsController', 'App\Http\Controllers\Tags\TagsController');
         $this->app->bind('Sendportal\Base\Http\Controllers\Campaigns\CampaignsController', 'App\Http\Controllers\Campaigns\CampaignsController');
+
+        $this->app->bind('Sendportal\Base\Models\Subscriber', 'App\Models\Subscriber');
+        $this->app->bind('Sendportal\Base\Services\Content\MergeContentService', 'namespace App\Services\Workspaces\MergeContentService');
     }
 
     public function boot(): void

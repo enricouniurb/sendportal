@@ -36,6 +36,18 @@
                                 <td><b>{{ __('Last Name') }}</b></td>
                                 <td>{{ $subscriber->last_name }}</td>
                             </tr>
+                            @if ($subscriber->text1)
+                            <tr>
+                                <td><b>{{ __('Text1') }}</b></td>
+                                <td>{{ $subscriber->text1 }}</td>
+                            </tr>
+                            @endif
+                            @if ($subscriber->text2)
+                            <tr>
+                                <td><b>{{ __('Text2') }}</b></td>
+                                <td>{{ $subscriber->text2 }}</td>
+                            </tr>
+                            @endif
                             <tr>
                                 <td><b>{{ __('Status') }}</b></td>
                                 <td>

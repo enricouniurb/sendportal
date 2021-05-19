@@ -25,9 +25,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('Sendportal\Base\Http\Controllers\Subscribers\SubscribersImportController', 'App\Http\Controllers\Subscribers\SubscribersImportController');
         $this->app->bind('Sendportal\Base\Http\Controllers\Tags\TagsController', 'App\Http\Controllers\Tags\TagsController');
         $this->app->bind('Sendportal\Base\Http\Controllers\Campaigns\CampaignsController', 'App\Http\Controllers\Campaigns\CampaignsController');
+        $this->app->bind('Sendportal\Base\Http\Controllers\MessagesController', 'App\Http\Controllers\MessagesController');
 
         $this->app->bind('Sendportal\Base\Models\Subscriber', 'App\Models\Subscriber');
-        $this->app->bind('Sendportal\Base\Services\Content\MergeContentService', 'namespace App\Services\Workspaces\MergeContentService');
+        $this->app->bind('Sendportal\Base\Models\Message', 'App\Models\Message');
+        $this->app->bind('Sendportal\Base\Services\Content\MergeContentService', 'App\Services\Content\MergeContentService');
+        $this->app->bind('Sendportal\Base\Http\Requests\SubscriberRequest', 'App\Http\Requests\SubscriberRequest');
+        $this->app->bind('Sendportal\Base\Repositories\Subscribers\MySqlSubscriberTenantRepository', 'App\Repositories\MySqlSubscriberTenantRepository');
     }
 
     public function boot(): void

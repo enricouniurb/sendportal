@@ -98,6 +98,7 @@
                             @empty
                                 -
                             @endforelse
+                        </td>
                         <td><span
                                 title="{{ $subscriber->created_at }}">{{ $subscriber->created_at->diffForHumans() }}</span>
                         </td>

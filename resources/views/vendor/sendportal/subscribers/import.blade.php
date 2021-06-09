@@ -40,6 +40,8 @@
                             <th>{{ __('email') }}</th>
                             <th>{{ __('first_name') }}</th>
                             <th>{{ __('last_name') }}</th>
+                            <th>{{ __('text1') }}</th>
+                            <th>{{ __('text2') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +50,8 @@
                             <td>me@sendportal.io</td>
                             <td>Myself</td>
                             <td>Included</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>

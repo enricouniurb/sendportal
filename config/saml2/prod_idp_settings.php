@@ -6,7 +6,7 @@ $this_idp_env_id = 'PROD';
 
 //This is variable is for simplesaml example only.
 // For real IdP, you must set the url values in the 'idp' config to conform to the IdP's real urls.
-$idp_host = env('SAML2_'.$this_idp_env_id.'_IDP_HOST', 'https://idp.uniurb.it/');
+$idp_host = env('SAML2_'.$this_idp_env_id.'_IDP_HOST', 'https://uniurb.idp.cineca.it/'); //'https://idp.uniurb.it/'
 
 return $settings = array(
 
@@ -80,23 +80,7 @@ return $settings = array(
             'url' => $idp_host.'idp/profile/Logout',
         ),
         // Public x509 certificate of the IdP
-        'x509cert' => env('SAML2_IDP_x509', 'MIIDIDCCAgigAwIBAgIVAPfr8HNJ+ZnHsOZPOHT6/ExkMj/TMA0GCSqGSIb3DQEB
-        BQUAMBgxFjAUBgNVBAMTDWlkcC51bml1cmIuaXQwHhcNMDkxMTA0MTIwNjM4WhcN
-        MjkxMTA0MTIwNjM4WjAYMRYwFAYDVQQDEw1pZHAudW5pdXJiLml0MIIBIjANBgkq
-        hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArCLO1a/dUZ8kXUwmWnFFQIZhqooWQS9E
-        jL+MBLChM79Rjh0Ucga+iWKfrldYst6GyUsucTc409cd0k1WuSrcWhqbGsNUklux
-        TF2RJOWdtc9o748/eybGFrymycmXnnGOinwmqvaRDQGQQ0oxi1CxhhJ/kkZRBiyH
-        kJ0w5NjY+8KUPlTiPU6X71HGPhrrOgBteGcegt5gIycMdWAZhl/30yLNxIo8XdRH
-        VmuHzifQqLxmsYRlHTQKVeKkQ39NcoKYpmmq84SQNximYDFy1l0QJErZ9din7q0T
-        9tJG56/1C7Cd3cswdA7E7rg8/E1SEQTq63WUuIssA9cgvVYy0zEJ1QIDAQABo2Ew
-        XzA+BgNVHREENzA1gg1pZHAudW5pdXJiLml0hiRodHRwczovL2lkcC51bml1cmIu
-        aXQvaWRwL3NoaWJib2xldGgwHQYDVR0OBBYEFEdlfuYSnAcQl8FMtl+bhsdev9SS
-        MA0GCSqGSIb3DQEBBQUAA4IBAQBYopjNhRz1N1QjNZDClXH0UgTBHIyzYs1kkfid
-        kySla/EpsunfgdhYyxewc0RmFkRbZsMbji5Sbu7ezVuTt+JO1DJvWvqGMUsvz3rP
-        Fj/hx4kxR+D2fM+27LoyK3L7jvAq8FcBR7b/vV+6vEF2vI4cKNXQ8GEv0Aem0Ow2
-        5l6w4DgJLa0/3BpfaktCHHtV9YMB8OdcmGi1LZLE89uDlBrh2wS7myGMU+3h6/GL
-        40cg0YNou/KoAV5DM0cvNRef+K/IjlEILdppfjfmk4jD9Eqom1m6i8dffH7fK2ee
-        T68a+KBYk1QOH0KR1wV5hojnDngV3n9JvzTHSBvVpbkOxvDi'),
+        'x509cert' => env('SAML2_IDP_x509', 'MIIEHzCCAoegAwIBAgIUWCI3fdbYmw8fPeyydQQlM0UpXbowDQYJKoZIhvcNAQELBQAwHzEdMBsGA1UEAwwUdW5pdXJiLmlkcC5jaW5lY2EuaXQwHhcNMjQwNDE3MTMxNzExWhcNNDQwNDE2MTMxNzExWjAfMR0wGwYDVQQDDBR1bml1cmIuaWRwLmNpbmVjYS5pdDCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBALjyWTcYJdC+kgZ5exuoUX8FRuyhZ/pY9gpdbX4wpGCu7lcUWmA7fjBOzHh198lA+Ff6/wM4cO0CQ0NGCVAf9CyGhXnuFGBw5tSK8rSSQfH4+K6/ePWHnLeQZJ0Nj6iF7GLRIxJ+U4Rnw94EXIU+tK5AeiwjQfK5SXquuwhx7fZyLzEzYPnYeDTTXxAaq9HABe77xbdbenUNrWkdSLxFu1FTe2n49X/GBNYaCMy7lXsibhTSA+scp2H1TRZnR5+qA+Olqn78UXwHwM50jpKd2du7+O57hvNRZqg1gDG6BdnB/TUmqxXzubMRBm/Y2D2ORTW0Q3+qKdP87FcWuOd5piOuwjf75mY6mX192l7YoefqXpOUnLfX0jq87oANNa++vbZ+6IghBZeJhM7O0y5w/EzNUZhMCIova4WYCBpUDa6VG98N9wZI1YJk/XEq0VV4jXToNxOwnyOdyAQoIexVyEGI/WAoicWjZepTcuJAMNO0YkeL3sn3wnl+5sGcB+DP/QIDAQABo1MwUTAdBgNVHQ4EFgQUovuqjX+QOC5ZMA+4OfziwXYj5F8wHwYDVR0jBBgwFoAUovuqjX+QOC5ZMA+4OfziwXYj5F8wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAYEAk+ZqXp7egXnMSTQuUw79KygAj08Ddv6nXjEWuxQwr34IsWuqoHh/u5McJT7s+At4NEaVBTXSqeTHBR1Rp4M2TBUHONdKJ4MNkNoBdPSQoGBqPw0XFZuV5WMhcgbeli66B2JCcHeRis1gnA9qFtYZ3RObiZBIkF7my4kjLXjvcwAcVD6A6SnupLD1iTGayCBMFCaBfYrT+moo5odPIyOHl3ZlcjaHVF6qJc316e8x/BsF9VFma/Zbr/lAVdN/hLVe51b1Ciqq2mykFSuX3FpArjOy5OoTdjo67G/8Pwjd1NzVbsyJNBWtY+quIkXrDUIP3VGonyJtOxsfKidJX81Bl4zC1y5O5WclirjOG/7ZZOazJgv1i9iYMNXnu/OlrYHGG/6e6TVOmXImUn54l15QPhpnPFWs05s/Tui27CQMo3LDkalFbRz+5Nd1WBiONUuZX0ihA04kiy83nsSyz4oxMZOZR1bGpIcIf/hByecO7UE0YOYMCtDGQ13t0Sau3jQl'),
         /*
          *  Instead of use the whole x509cert you can use a fingerprint
          *  (openssl x509 -noout -fingerprint -in "idp.crt" to generate it)
@@ -112,82 +96,44 @@ return $settings = array(
      *
      *
      */
-    // Security settings
-    'security' => array(
-
-        /** signatures and encryptions offered */
-
-        // Indicates that the nameID of the <samlp:logoutRequest> sent by this SP
-        // will be encrypted.
+    'security' => [
         'nameIdEncrypted' => false,
-
-        // Indicates whether the <samlp:AuthnRequest> messages sent by this SP
-        // will be signed.              [The Metadata of the SP will offer this info]
         'authnRequestsSigned' => false,
-
-        // Indicates whether the <samlp:logoutRequest> messages sent by this SP
-        // will be signed.
         'logoutRequestSigned' => false,
-
-        // Indicates whether the <samlp:logoutResponse> messages sent by this SP
-        // will be signed.
         'logoutResponseSigned' => false,
-
-        /* Sign the Metadata
-         False || True (use sp certs) || array (
-                                                    keyFileName => 'metadata.key',
-                                                    certFileName => 'metadata.crt'
-                                                )
-        */
         'signMetadata' => false,
 
-
-        /** signatures and encryptions required **/
-
-        // Indicates a requirement for the <samlp:Response>, <samlp:LogoutRequest> and
-        // <samlp:LogoutResponse> elements received by this SP to be signed.
+        // Preprod: IdP sends unsigned and unencrypted assertions
         'wantMessagesSigned' => false,
-
-        // Indicates a requirement for the <saml:Assertion> elements received by
-        // this SP to be signed.        [The Metadata of the SP will offer this info]
         'wantAssertionsSigned' => false,
-
-        // Indicates a requirement for the NameID received by
-        // this SP to be encrypted.
         'wantNameIdEncrypted' => false,
-
         'wantAssertionsEncrypted' => true,
-        // Authentication context.
-        // Set to false and no AuthContext will be sent in the AuthNRequest,
-        // Set true or don't present thi parameter and you will get an AuthContext 'exact' 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport'
-        // Set an array with the possible auth context values: array ('urn:oasis:names:tc:SAML:2.0:ac:classes:Password', 'urn:oasis:names:tc:SAML:2.0:ac:classes:X509'),
-        'requestedAuthnContext' => false,        
 
-          //'signatureAlgorithm' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+        'requestedAuthnContext' => false,
         'signatureAlgorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
-      
-        //'digestAlgorithm' =>  'http://www.w3.org/2000/09/xmldsig#sha1',
         'digestAlgorithm' => 'http://www.w3.org/2001/04/xmlenc#sha256',
-    ),
+    ],
+
+    'strict' => false,
 
     // Contact information template, it is recommended to suply a technical and support contacts
     'contactPerson' => array(
         'technical' => array(
-            'givenName' => 'name',
-            'emailAddress' => 'no@reply.com'
+            'givenName' => 'Supporto Tecnico',
+            'emailAddress' => 'ict@uniurbt.it'
         ),
         'support' => array(
-            'givenName' => 'Support',
-            'emailAddress' => 'no@reply.com'
+            'givenName' => 'Assistenza Clienti',
+            'emailAddress' => 'ict@uniurbt.it'
         ),
     ),
 
     // Organization information template, the info in en_US lang is recomended, add more if required
     'organization' => array(
         'en-US' => array(
-            'name' => 'Name',
-            'displayname' => 'Display Name',
-            'url' => 'http://url'
+            'name' => 'Università degli Studi di Urbino Carlo Bo',
+            'displayname' => 'Università degli Studi di Urbino Carlo Bo',
+            'url' => 'https://uniurb.it/'
         ),
     ),
 
@@ -201,4 +147,3 @@ return $settings = array(
 
 
 );
-

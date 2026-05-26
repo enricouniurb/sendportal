@@ -6,9 +6,31 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Sendportal\Base\Models\Campaign;
 use Sendportal\Base\Repositories\Campaigns\MySqlCampaignTenantRepository;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Sendportal\Base\Models\CampaignStatus;
 
 class PatchedCampaignTenantRepository extends MySqlCampaignTenantRepository
 {
+
+    /**
+     * {@inheritDoc}
+     */
+    public function completedCampaigns(int $workspaceId, array $relations = []): EloquentCollection
+    {
+        $limit = (int) env('SENDPORTAL_COMPLETED_CAMPAIGNS_LIMIT', 25);
+
+        if ($limit <= 0) {
+            $limit = 25;
+        }
+
+        return $this->getQueryBuilder($workspaceId)
+            ->where('status_id', CampaignStatus::STATUS_SENT)
+            ->with($relations)
+            ->orderByDesc('created_at')
+            ->limit($limit)
+            ->get();
+    }
+
     public function getCounts(Collection $campaignIds, int $workspaceId): array
     {
         if ($campaignIds->isEmpty()) {

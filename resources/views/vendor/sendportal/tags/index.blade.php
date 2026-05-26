@@ -51,5 +51,12 @@
                 </tbody>
             </table>
         </div>
+        
+        @if(method_exists($tags, 'hasPages') && $tags->hasPages())
+            <div class="card-footer">
+                {{ $tags->appends(request()->query())->links() }}
+            </div>
+        @endif
+
     </div>
 @endsection

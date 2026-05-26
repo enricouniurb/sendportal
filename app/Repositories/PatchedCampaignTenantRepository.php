@@ -29,7 +29,7 @@ class PatchedCampaignTenantRepository extends MySqlCampaignTenantRepository
             ->selectRaw(sprintf('count(case when %ssendportal_messages.clicked_at IS NOT NULL then 1 end) as clicked', DB::getTablePrefix()))
             ->selectRaw(sprintf('count(case when %ssendportal_messages.sent_at IS NOT NULL then 1 end) as sent', DB::getTablePrefix()))
             ->selectRaw(sprintf('count(case when %ssendportal_messages.bounced_at IS NOT NULL then 1 end) as bounced', DB::getTablePrefix()))
-            ->selectRaw(sprintf('count(case when %1$ssendportal_messages.id IS NOT NULL and %1$ssendportal_messages.sent_at IS NULL then 1 end) as pending', DB::getTablePrefix()))
+            ->selectRaw(sprintf('count(case when %ssendportal_messages.sent_at IS NULL then 1 end) as pending', DB::getTablePrefix()))
             ->groupBy('sendportal_campaigns.id')
             ->orderBy('sendportal_campaigns.id')
             ->get();

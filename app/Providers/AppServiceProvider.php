@@ -12,6 +12,9 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use RuntimeException;
 use Sendportal\Base\Facades\Sendportal;
+use App\Repositories\PatchedCampaignTenantRepository;
+use Illuminate\Contracts\Foundation\Application;
+use Sendportal\Base\Repositories\Campaigns\CampaignTenantRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('Sendportal\Base\Services\Content\MergeContentService', 'App\Services\Content\MergeContentService');
         $this->app->bind('Sendportal\Base\Http\Requests\SubscriberRequest', 'App\Http\Requests\SubscriberRequest');
         $this->app->bind('Sendportal\Base\Repositories\Subscribers\MySqlSubscriberTenantRepository', 'App\Repositories\MySqlSubscriberTenantRepository');
+
+        $this->app->bind(CampaignTenantRepositoryInterface::class, function (Application $app) {
+            return $app->make(PatchedCampaignTenantRepository::class);
+        });
     }
 
     public function boot(): void

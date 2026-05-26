@@ -9,14 +9,7 @@ use Aacotroneo\Saml2\Events\Saml2LoginEvent;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\MessageBag;
-use App\Service\LoginService;
-use Exception;
-use App\Exceptions\Handler;
-use Illuminate\Container\Container;
-use Illuminate\Support\Str;
 
 class LoginListener
 {
@@ -41,6 +34,24 @@ class LoginListener
         $messageId = $event->getSaml2Auth()->getLastMessageId();
         Log::info('messageId [' . $messageId . ']');   
 
+        $attributesNameNew = [
+            'cn' => 'urn:oid:2.5.4.3',
+            'sn' => 'urn:oid:2.5.4.4',
+            'givenName' => 'urn:oid:2.5.4.42',
+            'displayName' => 'urn:oid:2.16.840.1.113730.3.1.241',
+            'ateneoPersonCF' => 'urn:oid:1.3.6.1.4.1.16983.300.1.1.2',
+            'eduPersonOrgDN' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.3',
+            'uid' => 'urn:oid:0.9.2342.19200300.100.1.1',
+            'eduPersonScopedAffiliation' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.9',
+            'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+            'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
+            'imRealm' => 'urn:oid:1.3.6.1.4.1.27280.1.21',
+            'eduPersonUniqueId' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.13',
+            'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
+            'imStudMatricola' => 'urn:oid:1.3.6.1.4.1.27280.1.20',
+            'ruolo' => 'urn:oid:1.3.6.1.4.1.27280.1.13',
+        ];
+
         $attributesName = [
             'eduPersonEntitlement' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.7',
             'cn' => 'urn:oid:2.5.4.3',                            
@@ -62,19 +73,19 @@ class LoginListener
 
         $user = $event->getSaml2User();
         Log::info('user [' . $user->getUserId() . ']');   
-        $user->parseAttributes($attributesName);
+        $user->parseAttributes(array_merge($attributesName, $attributesNameNew));
         
         $userData = new User();    
         
         $userData->id = $user->getUserId();
         $userData->attributes = $user->getAttributes();
         $userData->name = $user->displayName[0];
-        $userData->email = $user->email[0];
+        $userData->email = $user->mail[0] ?? $user->email[0] ?? null;
         Log::info('email [' . $userData->email . ']');   
         $userData->eduPersonScopedAffiliation = $user->eduPersonScopedAffiliation;
-        $userData->password =Hash::make($user->codiceFiscale[0]);
+        $userData->cf = $user->ateneoPersonCF[0] ?? $user->codiceFiscale[0] ?? null;
+        $userData->password = Hash::make($userData->cf);
         $userData->assertion = $user->getRawSamlAssertion();
-        $userData->cf = $user->codiceFiscale[0];
 
         //check if email already exists and fetch user
         $laravelUser = User::where('email', $userData['email'])->first();
